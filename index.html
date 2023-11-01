@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Бесплатные котята</title>
+
+<style>
+    body {
+      background-color: #ffd1ea;
+      color: darkblue;
+      text-align: center;
+    }
+
+    .cat {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .cat img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .cat-details {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 10px;
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <h1 style=" margin-top: 35px;">Отдаются котики в хорошие руки</h1>
+
+    <div class="cat">
+        <img src="cat1.jpg" alt="Cat 1" onmouseover="showDetails('Мальчик, рыжий')" onmouseout="hideDetails()">
+        <div class="cat-details" id="cat1-details"></div>
+    </div>
+    <div class="cat">
+        <img src="cat2.jpg" alt="Cat 2" onmouseover="showDetails('Девочка, бело-рыжая')" onmouseout="hideDetails()">
+        <div class="cat-details" id="cat2-details"></div>
+    </div>
+    <div class="cat">
+        <img src="cat3.jpg" alt="Cat 3" onmouseover="showDetails('Мальчик, полосатый, коричневый')" onmouseout="hideDetails()">
+        <div class="cat-details" id="cat3-details"></div>
+    </div>
+    <div class="cat">
+        <img src="cat4.jpg" alt="Cat 4" onmouseover="showDetails('Девочка, бело-серая')" onmouseout="hideDetails()">
+        <div class="cat-details" id="cat4-details"></div>
+    </div>
+
+    <p>Информация о котёнке:</p>
+<form>
+
+    <textarea id="message" name="message" rows="4" cols="50" readonly></textarea>
+</form>
+
+<script>
+    function showDetails(details) {
+        document.getElementById("message").value = details;
+    }
+    function hideDetails() {
+        document.getElementById("message").value = "";
+    }
+</script>
+</body>
+</html>
