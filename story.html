@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор сказок</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      color: rgb(23, 48, 147);
+      font-size: 23px;
+    }
+
+    .slideshow-controls button {
+      font-size: 17px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 18px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Генератор сказок</h1>
+
+    <form id="storybook-form">
+      <label for="hero">Главный герой:</label>
+      <input type="text" id="hero" placeholder="Введите имя героя" required>
+
+      <label for="place">Место рождения:</label>
+      <input type="text" id="place" placeholder="Введите рождения героя" required>
+
+      <label for="women">Женский персонаж:</label>
+      <input type="text" id="women" placeholder="Введите имя девушки" required>
+
+      <label for="villain">Злодей:</label>
+      <input type="text" id="villain" placeholder="Введите имя злодея" required>
+
+      <label for="relic">Ценная семейная реликвия:</label>
+      <input type="text" id="relic" placeholder="Введите ценную реликвию" required>
+
+      <button type="reset">Сброс</button>
+      <button type="submit">Сгенерировать сказку</button>
+    </form>
+  </div>
+
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+
+  <script>
+    const storybookForm = document.getElementById('storybook-form');
+
+    storybookForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const hero = document.getElementById('hero').value;
+      const place = document.getElementById('place').value;
+      const women = document.getElementById('women').value;
+      const relic = document.getElementById('relic').value;
+      const villain = document.getElementById('villain').value;
+
+      const storyHTML = `
+        <html>
+        <head>
+          <title>Сказка</title>
+          <style>
+            body {
+              background: #9d07fa31;
+              font-family: Arial, sans-serif;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+            }
+            h1 { font-size: 23px; }
+          </style>
+        </head>
+        <body>
+          <h1>Сказка</h1>
+          <p style="
+    margin-top: 0px;
+    margin-bottom: 0px;
+" >Жил-был ${hero} в месте под названием ${place}.</p>
+          <p style="
+    margin-top: 0px;
+    margin-bottom: 0px;
+" >${hero} отправился на поиски своей любви, через моря и горы, пустыню и джунгли. Скитался он по всему миру. И наконец нашёл то, что искал. Её звали ${women}. Однако, чтобы заполучить её сердце, ему нужно было её чем-то удивить.</p>
+          <p style="
+    margin-top: 0px;
+    margin-bottom: 0px;
+" >Он вспомнил о легенде про ${relic}. В стремлении найти ${relic} он столкнулся с опасным злодеем по имени ${villain}, который охранял эту вещь. В конце-концов он одолел врага и преподнёс своей возлюбленной ${relic} в качестве дара.</p>
+          <p>${women} была в таком восторге, что из её глаз потекли тоненькие ручейки слёз. Она знала, что ${villain} украл ${relic}, потому что ${relic} - это достояние её семьи.</p>
+          <button onclick="window.close()">Закрыть</button>
+        </body>
+        </html>
+      `;
+
+      const newWindow = window.open();
+      newWindow.document.write(storyHTML);
+      newWindow.document.close();
+    });
+
+    storybookForm.addEventListener('reset', function () {
+      storybookForm.reset();
+    });
+  </script>
+
+</body>
+</html>

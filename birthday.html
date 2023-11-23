@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>В какой день Вы родились?</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .date-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+      color: rgb(23, 48, 147);
+      font-size: 23px;
+    }
+    .slideshow-controls button {
+      font-size: 18px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 23px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="date-container">
+    <h1>Введите дату рождения</h1>
+    <p>День:</p>
+    <input type="number" id="day" placeholder="День">
+    <p>Месяц:</p>
+    <input type="number" id="month" placeholder="Месяц">
+    <p>Год:</p>
+    <input type="number" id="year" placeholder="Год">
+    <p></p>
+    <button id="calculate">Рассчитать</button>
+    <p id="result"></p>
+  </div>
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+  <script>
+    function calculateDate() {
+      const day = parseInt(document.getElementById('day').value);
+      const month = parseInt(document.getElementById('month').value);
+      const year = parseInt(document.getElementById('year').value);
+
+      if (isNaN(day) || isNaN(month) || isNaN(year)) {
+        document.getElementById('result').textContent = 'Введите дату';
+        return;
+      }
+
+      const daysOfWeek = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+      const months = [
+        'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+      ];
+
+      const date = new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0 (0 - январь, 11 - декабрь)
+      const dayOfWeek = daysOfWeek[date.getDay()];
+      const monthName = months[month - 1]; // Месяцы в массиве начинаются с 0
+
+      document.getElementById('result').textContent = `${dayOfWeek}, ${day} ${monthName} ${year} года`;
+    }
+
+    const calculateButton = document.getElementById('calculate');
+    calculateButton.addEventListener('click', calculateDate);
+  </script>
+</body>
+</html>

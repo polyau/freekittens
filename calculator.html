@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Калькулятор</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+      color: rgb(23, 48, 147);
+    }
+    .slideshow-controls button {
+      font-size: 18px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 20px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Калькулятор</h1>
+
+    <input type="text" id="number1" placeholder="Введите первое число">
+    <input type="text" id="number2" placeholder="Введите второе число">
+    <select id="operation">
+      <option value="+">Сложение (+)</option>
+      <option value="-">Вычитание (-)</option>
+      <option value="*">Умножение (*)</option>
+      <option value="/">Деление (/)</option>
+    </select>
+    <button id="calculate">Вычислить</button>
+    <p id="result"></p>
+  </div>
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+  <script>
+    function calculate() {
+      const number1 = parseFloat(document.getElementById('number1').value);
+      const number2 = parseFloat(document.getElementById('number2').value);
+      const operation = document.getElementById('operation').value;
+      const resultElement = document.getElementById('result');
+
+      if (isNaN(number1) || isNaN(number2)) {
+        resultElement.textContent = 'Введите числа';
+        return;
+      }
+
+      let result;
+      switch (operation) {
+        case '+':
+          result = number1 + number2;
+          break;
+        case '-':
+          result = number1 - number2;
+          break;
+        case '*':
+          result = number1 * number2;
+          break;
+        case '/':
+          if (number2 === 0) {
+            resultElement.textContent = 'Ошибка: деление на ноль';
+            return;
+          }
+          result = number1 / number2;
+          break;
+        default:
+          resultElement.textContent = 'Ошибка: неверная операция';
+          return;
+      }
+
+      resultElement.textContent = `Результат:  ${result}`;
+    }
+
+    const calculateButton = document.getElementById('calculate');
+    calculateButton.addEventListener('click', calculate);
+  </script>
+</body>
+</html>

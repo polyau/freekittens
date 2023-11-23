@@ -1,0 +1,427 @@
+/* !!! Шаблон в две колонки с адаптивным дизайном и с учетом элементарной семантики !!! */
+/* Правила для экранной версии представления данных */
+@media screen {
+/* Общие установки делающие верстку макетов сайта более понятной */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Установки для body: фона, семейства шрифтов и цвета шрифтов */
+body {
+  background: #ffd1ea;
+  font-size: 21px;
+  color: darkblue;
+  text-align: center;
+}
+
+/* Шрифт для "шапки", меню навигации, заголовков второго уровня в основном тексте, новостей, дат и "подвала" */
+.header, .menu, .text h1, .text h2, .text p.news, footer {
+  font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* Общие правила оформления "шапки" и "подвала" */
+.header {
+  color: darkblue;
+  background: #993333;
+  padding: 10px 0 3px 0;
+  margin: 0;
+}
+
+/* Оформление шапки */
+.header {
+  border-bottom: solid 5px #cc6666;
+  text-align: center;
+}
+
+/* !!! Блок навигации !!! */
+/* Позиционирование блока навигации */
+.menu {
+  margin-top: 40px;
+  float: left;
+  width: 20%;
+  text-align: left;
+  border-style: solid; 
+  border-width: 0 1px 0 0; 
+  border-color: #ccc;
+}
+
+/* В блоке навигации при помощи свойства display превращаем гиперссылки и
+   контейнер <span>, из строчных элементов в блочные,
+   тогда можно указывать ширину при помощи свойства width */
+.menu a, .menu span {
+  background-color: #e5e5e5;
+  padding: 2px 2px 2px 20px;
+  margin-top: 2px;
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+/* Отображение ненажатых "кнопок" */
+.menu a {
+  color: #000;
+  text-decoration: none;
+}
+/* Отображение обрамления "кнопок" непросмотренных и просмотренных */
+.menu a:link, .menu a:visited {
+  background: #fff;
+  border: solid 2px #fff;
+}
+/* Отображение обрамления "кнопок". Их стилей и цветов при наведении, нажатии, текущих, нажатых */
+.menu a:hover, .menu a:active, .menu a.current:link, .menu a.current:visited, .menu span {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #fff;
+  color: #999;
+  text-decoration: underline;
+}
+/* Отображение "кнопок" на страницах 3-го уровня */
+.menu a.current:link, .menu a.current:visited, .menu span {
+  background: #fff;
+  color: #ccc;
+}
+/* Отображение "кнопок" на страницах 2-го уровня */
+.menu span {
+  color: #999;
+  text-decoration: none;
+}
+/* Цвет фона "кнопок" при наведении и нажатии */
+.menu a.current:hover, .menu a.current:active {
+  background: #fff;
+}
+
+/* !!! Оформление элементов области основного текстового содержания страниц !!! */
+.text {
+  float: center;
+  width: 80%;
+  padding:0 20px;
+  min-height: 556px;
+  margin-top:30px;
+
+}
+
+/* Правила отображения заголовков h1 и h2 */
+.text h1, .text h2 {
+  box-sizing: border-box;
+  padding: 10px 0 10px 0;
+  font-weight: normal;
+  color: #993333;
+  margin-top: 35px;
+}
+.text h1 {
+  font-size: 140%;
+}
+.text h2 {
+  font-size: 120%;
+
+}
+
+/* Абзацы основного текста оформляются в соответствии 
+   с традициями русскоязычного текстового набора */
+.text p {
+  text-align: justify;
+  text-indent: 1.5em;
+  margin: 0px;
+}
+
+/* Класс абзацев, предназначенный для новостей и хронологий */
+.text p.news {
+  text-align: left;
+  font-size: 95%;
+  text-indent: 0pt;
+  margin-top: .3em;
+  margin-bottom: .3em;
+} 
+/* Класс, позволяющий выделять полужирным начертанием дат новостей и хронологий */
+.date {
+  font-weight: bold;
+}
+
+/* Представление нумерованных и маркированных списков
+   в основном тексте */
+.text ul, .text ol {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  list-style-position: inside;
+}
+.text ul {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+/* Оформление ссылок в основном тексте */
+.text a {
+  text-decoration: none;
+}
+.text a:link {
+  color: #cc6633;
+}
+.text a:visited {
+  color: #999;
+}
+.text a:hover {
+  text-decoration: underline;
+}
+.text a:active {
+  color: #f00;
+}
+
+/* Оформление изображений в верхней левой части текста */
+div.img_lt {
+  float: left;
+  margin: 5px 15px 1px 0;
+  display: inline;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Убираем рамки вокруг изображений */
+.img {
+  border: 0;
+}
+
+/* Оформление тегов <summary> */
+summary {
+  cursor: pointer;
+  outline: 0;
+  font-size: 15px;
+  color: #cc6633;
+  float: right;
+}
+
+/* Отображение структурированных строк */
+.line-str1 {
+  padding-left: 15px;
+}
+.line-str2 {
+  padding-left: 30px;
+}
+.line-str3 {
+  padding-left: 45px;
+}
+
+/* !!! Оформление "подвала" и содержащихся в нем элементов !!! */
+footer {
+  width: 100%;
+  clear: both;
+  color: #fff;
+  background: #993333;
+  padding: 10px 0 10px 0;
+  font-size: 85%;
+  border-top: solid 5px #cc6666;
+  text-align: center;
+}
+footer a:link, footer a:visited, footer a:hover, footer a:active {
+  text-decoration: underline;
+  color: #fff;
+}
+address, footer span {
+  font-size: 75%;
+}
+}
+
+/* !!! Правила, определяющие мобильную версию для смартфонов !!! */
+@media only screen and (max-width:620px) {
+.menu, .text {
+  width:100%;
+}
+}
+
+.info-container {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 5px;
+  display: none;
+}
+
+.flower:hover .info-container {
+  display: block;
+}
+
+.info-text {
+  font-weight: bold;
+}
+
+.flower-info-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 20px;
+  display: none;
+  z-index: 999;
+}
+
+form {
+  border: 2px solid #ccc; /* Добавляем рамку вокруг формы */
+  padding: 20px; /* Увеличиваем отступ внутри формы */
+  margin-top: 20px; /* Добавляем отступ сверху */
+}
+
+/* Стили для текстового поля внутри формы */
+#flower-info-input {
+  width: 20%; /* Занимает всю доступную ширину формы */
+  padding: 10px; /* Увеличиваем отступ внутри текстового поля */
+  font-size: 16px; /* Увеличиваем размер шрифта */
+  border: 1px solid #999; /* Добавляем рамку вокруг текстового поля */
+}
+
+.flower-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Равномерное распределение между фотографиями */
+}
+
+.flower-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2px 0; /* Измените это значение, чтобы установить близкое вертикальное расстояние между рядами */
+}
+
+.flower {
+  width: 200px;
+  height: 175px;
+  margin: 20px;
+  position: relative; 
+  display: inline-block;
+
+ /* width: calc(100% + 10px); /* Измените это значение, чтобы установить желаемую ширину фотографий и их горизонтальное расстояние */
+  /*text-align: center;
+  position: relative;
+  margin: 0 5px; /* Горизонтальное расстояние между фотографиями */
+}
+
+.flower img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+
+  /* height: auto;
+  cursor: pointer;
+  max-height: 250px; /* Устанавливаем максимальную высоту для уменьшения масштаба */
+ /* margin: 0; /* Убираем внешние отступы у изображений */ 
+}
+
+.cat-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 10px;
+  display: none;
+}
+
+
+h2 {
+  text-align: center; /* Выравниваем текст по центру */
+  color: rgb(23, 48, 147);
+}
+
+.slideshow {
+  text-align: center; /* Центрируем элементы внутри .slideshow */
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slideshow-controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.slideshow-controls button {
+  font-size: 19px; /* Увеличиваем размер шрифта кнопок */
+  background-color: #00000024; /* Изменяем цвет фона кнопок */
+  color: #000; /* Изменяем цвет текста кнопок */
+  border: none;
+  padding: 10px 17px; /* Увеличиваем отступы внутри кнопок */
+  margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+
+  border-radius: 5px; /* Добавляем скругление углов */
+}
+
+.slideshow-controls button:hover {
+  background-color: #6b3d5cd3; /* Изменяем цвет фона кнопок при наведении */
+}
+
+
+.slideshow {
+  text-align: center; /* Центрируем элементы внутри .slideshow */
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  margin: 0 auto; /* Горизонтальное центрирование .slideshow */
+}
+
+
+.slideshow-image {
+  position: absolute;
+  width: 30%;
+  height: 90%;
+}
+
+#prev-slide, #next-slide {
+  margin: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.animal-names {
+  text-align: center; /* Выравниваем текст по центру */
+  display: flex; /* Используем flex-контейнер для выравнивания по горизонтали */
+  justify-content: center; /* Горизонтальное выравнивание по центру */
+}
+
+.show-on-hover {
+  border: 2px solid #333;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.show-on-hover img {
+  display: none;
+}
+
+table {
+  width: 40%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 2px solid #333;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #333;
+  font-size: 24px;
+  text-align: center;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+}
+
+#animalImage {
+  display: block;
+  margin: 0 auto;
+}

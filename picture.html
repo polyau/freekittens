@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Генератор страницы</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+      color: rgb(23, 48, 147);
+      font-size: 23px;
+    }
+    .slideshow-controls button {
+      font-size: 18px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 18px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Генератор страницы</h1>
+
+    <form id="image-form">
+      <label for="title">Заголовок:</label>
+      <input type="text" id="title" placeholder="Введите заголовок" required>
+
+      <label>Выберите изображение:</label>
+      <select id="image">
+        <option value="img/cat.jpg">Кошка</option>
+        <option value="img/hedgehog.jpg">Ёжик</option>
+        <option value="img/fox.jpg">Лиса</option>
+      </select>
+
+      <label for="caption">Подпись:</label>
+      <input type="text" id="caption" placeholder="Введите подпись" required>
+
+      <label for="background-color">Цвет фона:</label>
+      <select id="background-color">
+        <option value="white">Белый</option>
+        <option value="lightgray">Серый</option>
+        <option value="lightblue">Голубой</option>
+      </select>
+
+      <label for="text-color">Цвет текста:</label>
+      <input type="radio" name="text-color" value="black" id="black-text">
+      <label for="black-text" style="color: black;">Черный</label>
+      <input type="radio" name="text-color" value="blue" id="blue-text">
+      <label for="blue-text" style="color: blue;">Синий</label>
+      <input type="radio" name="text-color" value="green" id="green-text">
+      <label for="green-text" style="color: green;">Зеленый</label>
+
+      <button type="reset">Сброс</button>
+      <button type="submit" id="generate">Показать</button>
+    </form>
+  </div>
+
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+
+  <script>
+    const imageForm = document.getElementById('image-form');
+
+    imageForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const selectedImage = document.getElementById('image').value;
+      const backgroundColor = document.getElementById('background-color').value;
+      const textColor = document.querySelector('input[name="text-color"]:checked').value;
+      const title = document.getElementById('title').value;
+      const caption = document.getElementById('caption').value;
+
+      const imageHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body {
+              background-color: ${backgroundColor};
+              color: ${textColor};
+              text-align: center;
+            }
+            img {
+              max-width: 50%; /* Уменьшим размер изображения */
+              height: auto;
+            }
+          </style>
+        </head>
+        <body>
+          <h1>${title}</h1>
+          <img src="${selectedImage}" alt="Выбранное изображение">
+          <p>${caption}</p>
+        </body>
+        </html>
+      `;
+
+      const newWindow = window.open();
+      newWindow.document.open();
+      newWindow.document.write(imageHTML);
+      newWindow.document.close();
+    });
+  </script>
+</body>
+</html>

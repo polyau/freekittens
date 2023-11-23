@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Лабораторная работа №3</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+</head>
+<body>
+<main>
+  <h2 style=" margin-top: 35px; margin-bottom: 8px;">Отдаются котики в хорошие руки</h2>
+  <div class="flower-container">
+    <div class="flower-row">
+      <div class="flower">
+            <img src="img/cat1.jpg" alt="Cat 1" title="Мальчик, рыжий">
+            <div class="cat-details" id="cat1-details"></div>
+        </div>
+        <div class="flower">
+            <img src="img/cat2.jpg" alt="Cat 2" title="Девочка, бело-рыжая">
+            <div class="cat-details" id="cat2-details"></div>
+        </div>
+        <div class="flower">
+            <img src="img/cat3.jpg" alt="Cat 3" title="Мальчик, полосатый, коричневый">
+            <div class="cat-details" id="cat3-details"></div>
+        </div>
+        <div class="flower">
+            <img src="img/cat4.jpg" alt="Cat 4" title="Девочка, бело-серая">
+            <div class="cat-details" id="cat4-details"></div>
+        </div>
+    </div>
+  </div>
+  <form>
+    <input type="text" id="flower-info-input" placeholder="Информация о котенке" readonly>
+  </form>
+  <h2 style=" margin-top: 25px; margin-bottom: 20px;">Слайд-шоу котяток</h2>
+  <div class="slideshow" id="flower-slideshow">
+    <img class="slideshow-image" src="img/cat1.jpg" alt="Slideshow1">
+    <img class="slideshow-image" src="img/cat2.jpg" alt="Slideshow2">
+    <img class="slideshow-image" src="img/cat3.jpg" alt="Slideshow3">
+    <img class="slideshow-image" src="img/cat4.jpg" alt="Slideshow4">
+  </div>
+  <div class="slideshow-controls">
+    <button id="next-flower-slide">Следующий слайд</button>
+  </div>
+
+  <h2 style=" margin-top: 35px; ">Цветы:</h2>
+
+  <table id="animalTable">
+    <tr>
+        <td onmouseover="showImage('img/tulpan.jpg')" onmouseout="hideImage()">Тюльпаны</td>
+      </tr>
+    <tr>
+        <td onmouseover="showImage('img/gortenzia.jpg')" onmouseout="hideImage()">Гортензии</td>
+    </tr>
+    <tr>
+        <td onmouseover="showImage('img/lupin.jpg')" onmouseout="hideImage()">Люпины</td>
+    </tr>
+    
+    <td><img id="animalImage" alt=""></td>
+</table>
+
+<script>
+  function showImage(imageName) {
+    document.getElementById("animalImage").src = imageName;
+  }
+
+  function hideImage() {
+      document.getElementById("animalImage").src = "img/fon.jpg";
+  }
+</script>
+
+  <h2 style=" margin-top: 25px;">Слайд-шоу цветочков</h2>
+  <div class="slideshow" id="animal-slideshow">
+    <img class="slideshow-image" src="img/tulpan.jpg" alt="">
+    <img class="slideshow-image" src="img/gortenzia.jpg" alt="">
+    <img class="slideshow-image" src="img/lupin.jpg" alt="">
+  </div>
+  <div class="slideshow-controls">
+    <button id="next-animal-slide">Следующий слайд</button>
+  </div>
+
+  <div class="slideshow-controls">
+    <a href="calculator.html">
+      <button>Калькулятор</button>
+    </a>
+    <a href="today.html">
+      <button>Какой сегодня день?</button>
+    </a>
+    <a href="life.html">
+      <button>Сколько дней вы прожили?</button>
+    </a>
+    <a href="distance.html">
+      <button>Расстояние до начала координат</button>
+    </a>
+    <a href="birthday.html">
+      <button>В какой день вы родились?</button>
+    </a>
+    <a href="holidays.html">
+      <button>Сколько дней до каникул?</button>
+    </a>
+    <a href="geometry.html">
+      <button>Площадь прямоугольника</button>
+    </a>
+    <a href="picture.html">
+      <button>Генератор страницы</button>
+    </a>
+    <a href="picture2.html">
+      <button>Генератор страницы №2</button>
+    </a>
+    <a href="aboutme.html">
+      <button>Генератор биографии</button>
+    </a>
+    <a href="story.html">
+      <button>Генератор сказок</button>
+    </a>
+  </div>
+</main>
+
+<script>
+  const flowerSlideshowImages = document.querySelectorAll('#flower-slideshow .slideshow-image');
+  const animalSlideshowImages = document.querySelectorAll('#animal-slideshow .slideshow-image');
+  let currentFlowerSlide = 0;
+
+  function showFlowerSlide() {
+    flowerSlideshowImages.forEach((image, index) => {
+      if (index === currentFlowerSlide) {
+        image.style.opacity = 1;
+      } else {
+        image.style.opacity = 0;
+      }
+    });
+  }
+
+  const nextFlowerSlideButton = document.getElementById('next-flower-slide');
+  nextFlowerSlideButton.addEventListener('click', () => {
+    currentFlowerSlide = (currentFlowerSlide + 1) % flowerSlideshowImages.length;
+    showFlowerSlide();
+  });
+
+  // Добавим слайд-шоу для цветов
+  const nextAnimalSlideButton = document.getElementById('next-animal-slide');
+  let currentAnimalSlide = 0;
+
+  function showAnimalSlide() {
+    animalSlideshowImages.forEach((image, index) => {
+      if (index === currentAnimalSlide) {
+        image.style.opacity = 1;
+      } else {
+        image.style.opacity = 0;
+      }
+    });
+  }
+
+  nextAnimalSlideButton.addEventListener('click', () => {
+    currentAnimalSlide = (currentAnimalSlide + 1) % animalSlideshowImages.length;
+    showAnimalSlide();
+  });
+
+  // Показать начальный слайд
+  showFlowerSlide();
+  showAnimalSlide();
+  
+  // Добавим обработчики событий для отображения информации о букетах при наведении
+  const flowers = document.querySelectorAll('.flower img');
+  const flowerInfoInput = document.getElementById('flower-info-input');
+
+  flowers.forEach((flower, index) => {
+    flower.addEventListener('mouseover', () => {
+      flowerInfoInput.value = flower.title.replace(/\n/g, ' ');
+    });
+
+    flower.addEventListener('mouseout', () => {
+      flowerInfoInput.value = '';
+    });
+  });
+
+  /* Обработчики событий для показа изображений при наведении */
+  const animalDescriptions = document.querySelectorAll('.show-on-hover');
+
+  animalDescriptions.forEach((description, index) => {
+    const animalImage = description.querySelector('img');
+    description.addEventListener('mouseover', () => {
+      animalImage.style.display = 'block';
+    });
+
+    description.addEventListener('mouseout', () => {
+      animalImage.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>

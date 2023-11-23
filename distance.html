@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расстояние до начала координат</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    h1 {
+      color: rgb(23, 48, 147);
+      font-size: 23px;
+    }
+    .slideshow-controls button {
+      font-size: 18px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 17px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Расстояние до начала координат</h1>
+    <p>Введите координаты точки</p>
+
+    <input type="number" id="x" placeholder="Координата X">
+    <input type="number" id="y" placeholder="Координата Y">
+    <button id="calculate">Рассчитать расстояние</button>
+    <p id="result"></p>
+  </div>
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+  <script>
+    function calculateDistance() {
+      const x = parseFloat(document.getElementById('x').value);
+      const y = parseFloat(document.getElementById('y').value);
+
+      if (isNaN(x) || isNaN(y)) {
+        document.getElementById('result').textContent = 'Пожалуйста, введите корректные координаты.';
+        return;
+      }
+
+      const distance = Math.sqrt(x * x + y * y);
+
+      document.getElementById('result').textContent = `Расстояние до начала координат: ${distance}`;
+    }
+
+    const calculateButton = document.getElementById('calculate');
+    calculateButton.addEventListener('click', calculateDistance);
+  </script>
+</body>
+</html>

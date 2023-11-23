@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Анкета</title>
+  <style>
+    body {
+      background: #ffd1ea;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    h1 {
+      color: rgb(23, 48, 147);
+      font-size: 23px;
+    }
+
+    .slideshow-controls button {
+      font-size: 18px; /* Увеличиваем размер шрифта кнопок */
+      background-color: #00000024; /* Изменяем цвет фона кнопок */
+      color: #000; /* Изменяем цвет текста кнопок */
+      border: none;
+      padding: 10px 18px; /* Увеличиваем отступы внутри кнопок */
+      margin: 10px; /* Увеличиваем внешние отступы вокруг кнопок */
+      cursor: pointer;
+      border-radius: 5px; /* Добавляем скругление углов */
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Анкета</h1>
+
+    <form id="profile-form">
+      <label for="last-name">Фамилия:</label>
+      <input type="text" id="last-name" placeholder="Введите вашу фамилию" required>
+
+      <label for="first-name">Имя:</label>
+      <input type="text" id="first-name" placeholder="Введите ваше имя" required>
+
+      <label for="middle-name">Отчество:</label>
+      <input type="text" id="middle-name" placeholder="Введите ваше отчество">
+
+      <label for="birth-date">Год рождения:</label>
+      <input type="text" id="birth-date" required>
+
+      <label for="birth-place">Место рождения:</label>
+      <input type="text" id="birth-place" placeholder="Введите место рождения" required>
+
+      <label for="bio">Биография:</label>
+      <textarea id="bio" rows="3" placeholder="Напишите о себе" required></textarea>
+
+      <button type="reset">Сброс</button>
+      <button type="submit">Сформировать</button>
+    </form>
+  </div>
+
+  <div class="slideshow-controls button">
+    <a href="index.html">
+      <button>Вернуться на главную страницу</button>
+    </a>
+  </div>
+
+  <script>
+    const profileForm = document.getElementById('profile-form');
+
+    profileForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const lastName = document.getElementById('last-name').value;
+      const firstName = document.getElementById('first-name').value;
+      const middleName = document.getElementById('middle-name').value;
+      const birthDate = document.getElementById('birth-date').value;
+      const birthPlace = document.getElementById('birth-place').value;
+      const bio = document.getElementById('bio').value;
+      const fullName = `${lastName} ${firstName}`;
+      const gender = middleName ? 'родилась в' : 'родился в';
+      const middleNameHTML = middleName ? ` ${middleName},` : ',';
+      const bioHTML = `
+        <html>
+        <head>
+          <title>Биография</title>
+          <style>
+            body {
+              background: #9d07fa31;
+              font-family: Arial, sans-serif;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+            }
+            h1 { font-size: 23px; }
+          </style>
+        </head>
+        <body>
+          <h1>О себе</h1>
+          <p>Я, ${fullName} ${middleNameHTML}  ${gender} ${birthDate} году в городе  ${birthPlace}</p>
+          <p>${bio}</p>
+          <button onclick="window.close()">Закрыть</button>
+        </body>
+        </html>
+      `;
+
+      const newWindow = window.open();
+      newWindow.document.write(bioHTML);
+      newWindow.document.close();
+    });
+
+    profileForm.addEventListener('reset', function () {
+      profileForm.reset();
+    });
+  </script>
+</body>
+</html>
